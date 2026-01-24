@@ -29,7 +29,7 @@ import {
   Link2,
 } from "lucide-react";
 import { z } from "zod";
-import { EnterConnectModal } from "./EnterConnectModal";
+import { EnterConnectModal, KepcoDataSummary } from "./EnterConnectModal";
 
 // Validation schemas
 const step1Schema = z.object({
@@ -272,13 +272,14 @@ export function LeadFormWizard({ prefilledEmail = "" }: LeadFormWizardProps) {
     }
   };
 
-  const handleEnterConnect = () => {
-    // Simulate connection
+  const handleEnterConnect = (data: KepcoDataSummary) => {
+    // Update connection state
     updateField("enterConnected", true);
-    // Prefill some placeholder values
-    updateField("annualElectricityCost", "15-30");
-    updateField("contractedPower", "2500");
-    updateField("tariffType", "highVoltageA");
+    // Prefill fields from KEPCO data
+    updateField("annualElectricityCost", data.annualCostRange);
+    updateField("contractedPower", data.contractPower.replace(/,/g, ""));
+    updateField("tariffType", data.tariffType);
+    updateField("peakManagement", data.peakIssue);
     setShowEnterModal(false);
   };
 

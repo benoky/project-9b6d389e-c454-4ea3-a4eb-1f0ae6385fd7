@@ -1,8 +1,19 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-const partners = Array(8).fill("Partner");
+import partnerKepco from "@/assets/partners/partner-kepco.svg";
+import partnerKoreawest from "@/assets/partners/partner-koreawest.svg";
+import partnerKomipo from "@/assets/partners/partner-komipo.svg";
+import partnerKepcoEs from "@/assets/partners/partner-kepco-es.png";
+import partnerMcc from "@/assets/partners/partner-mcc.svg";
+
+const partners = [
+  { name: "한국전력공사", logo: partnerKepco },
+  { name: "한국서부발전", logo: partnerKoreawest },
+  { name: "한국중부발전", logo: partnerKomipo },
+  { name: "한전KPS", logo: partnerKepcoEs },
+  { name: "MCC", logo: partnerMcc },
+];
 
 export function SectionTrust() {
   const scrollToForm = () => {
@@ -35,13 +46,15 @@ export function SectionTrust() {
           <div className="flex animate-marquee">
             {[...partners, ...partners].map((partner, index) => (
               <div
-                key={`${partner}-${index}`}
-                className="flex-shrink-0 mx-3 md:mx-5"
+                key={`${partner.name}-${index}`}
+                className="flex-shrink-0 mx-4 md:mx-6"
               >
-                <div className="h-12 w-24 md:w-32 flex items-center justify-center px-4 py-2.5 bg-muted/50 rounded-xl border border-border/50">
-                  <span className="text-sm font-medium text-muted-foreground/50 whitespace-nowrap">
-                    {partner}
-                  </span>
+                <div className="h-14 md:h-16 w-auto flex items-center justify-center px-6 py-3 bg-white rounded-2xl border border-border/30 shadow-sm">
+                  <img 
+                    src={partner.logo} 
+                    alt={partner.name} 
+                    className="h-8 md:h-10 w-auto object-contain"
+                  />
                 </div>
               </div>
             ))}

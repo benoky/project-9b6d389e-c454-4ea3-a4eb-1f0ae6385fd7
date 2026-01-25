@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { Logo } from "@/components/Logo";
 
 export function StickyHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,9 +34,7 @@ export function StickyHeader() {
       <div className="container-tight flex items-center justify-between h-16 md:h-18">
         {/* Logo */}
         <div className="flex flex-col">
-          <a href="#" className="text-xl md:text-2xl font-bold text-foreground tracking-tight">
-            NX
-          </a>
+          <Logo variant="color" />
           <span className="text-[10px] md:text-[11px] text-muted-foreground -mt-0.5 font-medium">
             에너지 최적화 기업
           </span>

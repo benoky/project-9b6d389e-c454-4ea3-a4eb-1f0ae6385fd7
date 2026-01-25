@@ -1,3 +1,5 @@
+import { Logo } from "@/components/Logo";
+
 export function Footer() {
   return (
     <footer className="bg-foreground text-background py-12 md:py-16">
@@ -5,7 +7,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Logo & Links */}
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-            <span className="text-lg font-bold">NX</span>
+            <Logo variant="white" />
             <nav className="flex flex-wrap justify-center gap-5 text-sm">
               <a
                 href="#"

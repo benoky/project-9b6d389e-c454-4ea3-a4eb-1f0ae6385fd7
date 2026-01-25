@@ -47,13 +47,13 @@ export function SectionTrust() {
             {[...partners, ...partners].map((partner, index) => (
               <div
                 key={`${partner.name}-${index}`}
-                className="flex-shrink-0 mx-4 md:mx-6"
+                className="flex-shrink-0 mx-3 md:mx-4"
               >
-                <div className="h-14 md:h-16 w-auto flex items-center justify-center px-6 py-3 bg-white rounded-2xl border border-border/30 shadow-sm">
+                <div className="h-14 md:h-16 min-w-[140px] md:min-w-[160px] flex items-center justify-center px-4 py-3 bg-white rounded-2xl border border-border/30 shadow-sm">
                   <img 
                     src={partner.logo} 
                     alt={partner.name} 
-                    className="h-8 md:h-10 w-auto object-contain"
+                    className="h-8 md:h-10 max-w-[100px] md:max-w-[120px] object-contain"
                   />
                 </div>
               </div>

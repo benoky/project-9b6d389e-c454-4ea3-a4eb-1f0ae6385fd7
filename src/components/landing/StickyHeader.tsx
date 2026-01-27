@@ -27,7 +27,7 @@ export function StickyHeader() {
       <div className="container-tight flex items-center justify-between h-16 md:h-18">
         {/* Logo */}
         <div className="flex flex-col">
-          <Logo variant="white" />
+          <Logo variant="color" />
           
         </div>
 

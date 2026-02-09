@@ -60,41 +60,39 @@ export function SectionProcessOverview() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative bg-card rounded-2xl border border-border overflow-hidden h-full"
             >
-              <div className="flex flex-col md:flex-row h-full">
-                {/* Text content */}
-                <div className="flex-1 p-6 md:p-7 flex flex-col">
+              <div className="flex flex-col h-full p-6 md:p-7">
+                {/* Top row: Step badge + Icon */}
+                <div className="flex items-start justify-between mb-4">
                   {/* Step badge */}
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4 w-fit">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold w-fit">
                     {item.step}
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-xl font-bold text-foreground mb-2">
-                    {item.title}
-                  </h3>
-
-                  {/* Subtitle */}
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    {item.subtitle}
-                  </p>
-
-                  {/* Bullets */}
-                  <ul className="space-y-2 flex-1">
-                    {item.bullets.map((bullet, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                        <span className="leading-relaxed">{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Icon section - right side on desktop, top on mobile */}
-                <div className="order-first md:order-last flex items-center justify-center p-6 md:p-7 md:pl-0">
-                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-accent flex items-center justify-center">
-                    <item.icon className="w-7 h-7 md:w-8 md:h-8 text-primary" strokeWidth={1.5} />
+                  {/* Icon - top right */}
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-accent flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-6 h-6 md:w-7 md:h-7 text-primary" strokeWidth={1.5} />
                   </div>
                 </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-bold text-foreground mb-2">
+                  {item.title}
+                </h3>
+
+                {/* Subtitle */}
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                  {item.subtitle}
+                </p>
+
+                {/* Bullets */}
+                <ul className="space-y-2 flex-1">
+                  {item.bullets.map((bullet, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                      <span className="leading-relaxed">{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </motion.div>
           ))}

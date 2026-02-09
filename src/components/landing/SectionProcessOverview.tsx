@@ -51,14 +51,15 @@ export function SectionProcessOverview() {
           duration: 0.5,
           delay: index * 0.1
         }} className="relative bg-card rounded-2xl p-7 md:p-8 shadow-card border border-border">
-              {/* Step badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-5">
-                {item.step}
-              </div>
-
-              {/* Icon */}
-              <div className="w-12 h-12 rounded-xl bg-accent mb-5 flex items-center justify-center">
-                <item.icon className="w-6 h-6 text-primary" />
+              {/* Header with Step badge and Icon */}
+              <div className="flex items-start justify-between mb-5">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+                  {item.step}
+                </div>
+                {/* Icon */}
+                <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center">
+                  <item.icon className="w-6 h-6 text-primary" />
+                </div>
               </div>
 
               {/* Title */}

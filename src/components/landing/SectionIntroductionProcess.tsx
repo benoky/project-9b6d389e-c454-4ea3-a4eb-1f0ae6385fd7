@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const processSteps = [
   { step: "STEP 1", label: "사전 정보 진단" },
@@ -26,22 +26,13 @@ export function SectionIntroductionProcess() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-foreground tracking-tight mb-6">
-            도입 프로세스 한 눈에 보기
+          <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-foreground tracking-tight mb-4">
+            초기 투자 Zero, 바로 시작하세요!
           </h2>
-          
-          {/* Zero cost highlight */}
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 border border-primary/20 mb-6">
-            <CheckCircle2 className="w-5 h-5 text-primary" />
-            <span className="text-lg md:text-xl font-bold text-primary">
-              초기 구축 비용 ZERO!
-            </span>
-          </div>
 
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            에너지 공기업의 선투자 구조를 통해
-            <br className="hidden md:block" />
-            건물의 초기 구축 부담 없이 에너지 최적화를 시작합니다.
+            공기업 선투자로 귀사 부담 없이<br />
+            상담부터 운영까지 한 번에 진행됩니다.
           </p>
         </motion.div>
 
@@ -111,7 +102,7 @@ export function SectionIntroductionProcess() {
           className="text-center"
         >
           <Button onClick={scrollToForm} size="lg" className="gap-2">
-            우리 건물도 가능한지 조회하기
+            지금 바로 무료 상담 신청하기
             <ArrowRight className="w-4 h-4" />
           </Button>
         </motion.div>

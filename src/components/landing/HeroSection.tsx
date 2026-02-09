@@ -47,23 +47,22 @@ export function HeroSection() {
           <div className="flex flex-col items-center md:items-start gap-4">
             <button 
               onClick={scrollToForm} 
-              className="group relative px-8 py-4 rounded-full font-semibold text-slate-900 bg-white overflow-hidden transition-shadow hover:shadow-xl"
+              className="group relative px-8 py-4 rounded-full font-semibold text-slate-900 bg-white overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(37,110,244,0.4)]"
             >
-              {/* Animated gradient border */}
-              <span className="absolute inset-0 rounded-full p-[2px] overflow-hidden">
+              {/* Animated gradient border - energy flowing effect */}
+              <span className="absolute inset-0 rounded-full overflow-hidden">
                 <span 
-                  className="absolute inset-[-100%] animate-spin-slow"
+                  className="absolute inset-[-200%] animate-energy-flow"
                   style={{
-                    background: 'conic-gradient(from 0deg, #3b82f6, #8b5cf6, #06b6d4, #10b981, #3b82f6)',
-                    animationDuration: '3s',
+                    background: 'conic-gradient(from 0deg, #256ef4, #60a5fa, #22d3ee, #60a5fa, #256ef4)',
                   }}
                 />
               </span>
               {/* Inner background */}
-              <span className="absolute inset-[2px] rounded-full bg-white" />
+              <span className="absolute inset-[2px] rounded-full bg-white transition-all duration-300 group-hover:bg-white/95" />
               {/* Button content */}
               <span className="relative flex items-center gap-2">
-                에너지 최적화 시작해보기
+                에너지 최적화 시작하기
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </span>
             </button>
@@ -72,9 +71,9 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* CSS for spin animation */}
+      {/* CSS for energy flow animation */}
       <style>{`
-        @keyframes spin-slow {
+        @keyframes energy-flow {
           from {
             transform: rotate(0deg);
           }
@@ -82,8 +81,8 @@ export function HeroSection() {
             transform: rotate(360deg);
           }
         }
-        .animate-spin-slow {
-          animation: spin-slow 3s linear infinite;
+        .animate-energy-flow {
+          animation: energy-flow 4s linear infinite;
         }
       `}</style>
     </section>

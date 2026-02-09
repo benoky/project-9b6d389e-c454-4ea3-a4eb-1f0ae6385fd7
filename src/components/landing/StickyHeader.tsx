@@ -56,7 +56,7 @@ export function StickyHeader() {
               1분이면 완료 · 무료 상담 · 24시간 내 회신
             </p>
             <Button onClick={scrollToForm} className="w-full">
-              에너지 최적화 시작해보기
+              에너지 최적화 시작하기
             </Button>
           </div>
         </motion.div>}

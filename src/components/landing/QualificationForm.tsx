@@ -334,7 +334,7 @@ export function QualificationForm() {
       {/* Submit */}
       <div className="space-y-3">
         <Button type="submit" size="lg" className="w-full gap-2">
-          에너지 최적화 조회하기
+          우리 건물 절감 가능 금액 확인하기
           <ArrowRight className="w-4 h-4" />
         </Button>
         <p className="text-xs text-muted-foreground text-center">

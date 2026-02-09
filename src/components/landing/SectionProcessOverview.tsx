@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Search, Settings, BarChart3, Check, ArrowRight } from "lucide-react";
+import { Search, Settings, BarChart3, Check } from "lucide-react";
 
 const steps = [{
   step: "STEP 1",
@@ -40,15 +40,7 @@ export function SectionProcessOverview() {
           </h2>
         </motion.div>
 
-        <div className="relative grid md:grid-cols-3 gap-5 md:gap-8 items-stretch">
-          {/* Subtle arrow connectors - Desktop only */}
-          <div className="hidden md:flex absolute top-1/2 left-[33.33%] -translate-x-1/2 -translate-y-1/2 z-10">
-            <ArrowRight className="w-4 h-4 text-muted-foreground/40" />
-          </div>
-          <div className="hidden md:flex absolute top-1/2 left-[66.66%] -translate-x-1/2 -translate-y-1/2 z-10">
-            <ArrowRight className="w-4 h-4 text-muted-foreground/40" />
-          </div>
-
+        <div className="grid md:grid-cols-3 gap-5 md:gap-6">
           {steps.map((item, index) => (
             <motion.div
               key={item.step}
@@ -56,51 +48,59 @@ export function SectionProcessOverview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative rounded-3xl p-7 md:p-8 flex flex-col bg-white border border-border/60 shadow-lg shadow-black/[0.03] transition-all duration-300 hover:bg-gradient-to-br hover:from-primary hover:via-primary hover:to-primary/80 hover:border-primary hover:shadow-xl hover:shadow-primary/20"
+              className="group relative rounded-2xl p-6 md:p-7 bg-white border border-border/50 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300"
             >
-              {/* Mobile arrow indicator */}
-              {index < steps.length - 1 && (
-                <div className="md:hidden absolute -bottom-3 left-1/2 -translate-x-1/2 z-10">
-                  <ArrowRight className="w-4 h-4 text-muted-foreground/40 rotate-90" />
+              {/* Card content with icon on right */}
+              <div className="flex gap-5">
+                {/* Left: Text content */}
+                <div className="flex-1 min-w-0">
+                  {/* Step badge */}
+                  <div className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold tracking-wide mb-4 bg-primary/10 text-primary">
+                    {item.step}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-foreground mb-2">
+                    {item.title}
+                  </h3>
+
+                  {/* Subtitle */}
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                    {item.subtitle}
+                  </p>
+
+                  {/* Divider */}
+                  <div className="w-full h-px bg-border/60 mb-5" />
+
+                  {/* Bullets with checkmarks */}
+                  <ul className="space-y-3">
+                    {item.bullets.map((bullet, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-sm">
+                        <span className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-primary/10">
+                          <Check className="w-2.5 h-2.5 text-primary" />
+                        </span>
+                        <span className="leading-relaxed text-muted-foreground">
+                          {bullet}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              )}
 
-              {/* Step badge */}
-              <div className="inline-flex self-start items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide mb-6 bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-white/20 group-hover:text-white">
-                {item.step}
-              </div>
-
-              {/* Icon + Title */}
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-accent transition-colors duration-300 group-hover:bg-white/20">
-                  <item.icon className="w-5 h-5 text-primary transition-colors duration-300 group-hover:text-white" />
+                {/* Right: Icon */}
+                <div className="flex-shrink-0 hidden md:flex items-center">
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center bg-accent/80 group-hover:bg-primary/10 transition-colors duration-300">
+                    <item.icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground transition-colors duration-300 group-hover:text-white">
-                  {item.title}
-                </h3>
+
+                {/* Mobile: Icon above content */}
+                <div className="absolute top-6 right-6 md:hidden">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-accent/80">
+                    <item.icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                  </div>
+                </div>
               </div>
-
-              {/* Subtitle */}
-              <p className="text-sm mb-6 leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-white/80">
-                {item.subtitle}
-              </p>
-
-              {/* Divider */}
-              <div className="w-full h-px mb-6 bg-border transition-colors duration-300 group-hover:bg-white/20" />
-
-              {/* Bullets with checkmarks */}
-              <ul className="space-y-3 flex-1">
-                {item.bullets.map((bullet, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm">
-                    <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-primary/10 transition-colors duration-300 group-hover:bg-white/20">
-                      <Check className="w-3 h-3 text-primary transition-colors duration-300 group-hover:text-white" />
-                    </span>
-                    <span className="leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-white/90">
-                      {bullet}
-                    </span>
-                  </li>
-                ))}
-              </ul>
             </motion.div>
           ))}
         </div>

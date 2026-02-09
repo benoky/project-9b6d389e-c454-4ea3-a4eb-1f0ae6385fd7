@@ -14,11 +14,11 @@ const Index = () => {
       <StickyHeader />
       <main>
         <HeroSection />
+        <SectionIntroductionProcess />
         <SectionTrust />
-        <SectionProcessOverview />
         <SectionDeploymentCases />
         <SectionOperationScale />
-        <SectionIntroductionProcess />
+        <SectionProcessOverview />
         <SectionLeadForm />
       </main>
       <Footer />

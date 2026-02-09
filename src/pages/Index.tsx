@@ -1,5 +1,6 @@
 import { StickyHeader } from "@/components/landing/StickyHeader";
 import { HeroSection } from "@/components/landing/HeroSection";
+import { SectionTrust } from "@/components/landing/SectionTrust";
 import { SectionProcessOverview } from "@/components/landing/SectionProcessOverview";
 import { SectionDeploymentCases } from "@/components/landing/SectionDeploymentCases";
 import { SectionOperationScale } from "@/components/landing/SectionOperationScale";
@@ -13,6 +14,7 @@ const Index = () => {
       <StickyHeader />
       <main>
         <HeroSection />
+        <SectionTrust />
         <SectionProcessOverview />
         <SectionDeploymentCases />
         <SectionOperationScale />

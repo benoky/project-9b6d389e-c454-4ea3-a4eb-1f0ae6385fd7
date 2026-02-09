@@ -29,7 +29,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl text-center mx-auto"
+          className="max-w-3xl text-center md:text-left md:mx-0 mx-auto"
         >
           {/* Headline */}
           <h1 className="text-[2.5rem] leading-[1.3] md:text-5xl lg:text-[3.5rem] font-extrabold text-white mb-6 text-balance tracking-tight">
@@ -39,12 +39,12 @@ export function HeroSection() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-[#E5E7EB] mb-12 max-w-2xl text-balance leading-relaxed mx-auto">
+          <p className="text-lg md:text-xl text-[#E5E7EB] mb-12 max-w-2xl text-balance leading-relaxed mx-auto md:mx-0">
             NX의 고객들은 구축 비용 없이 전기료를 절감하고, 에너지를 관리하고 있습니다.
           </p>
 
           {/* Primary CTA with animated gradient border */}
-          <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-col items-center md:items-start gap-4">
             <button 
               onClick={scrollToForm} 
               className="group relative px-8 py-4 rounded-full font-semibold text-slate-900 bg-white overflow-hidden transition-shadow hover:shadow-xl"

@@ -51,7 +51,7 @@ export function HeroSection() {
               className="cta-gradient-border text-base font-semibold group transition-shadow"
             >
               <span className="text-slate-900">
-                에너지 최적화 시작하기
+                무료 에너지 진단 신청하기
                 <ArrowRight className="w-4 h-4 inline-block ml-2 transition-transform group-hover:translate-x-1" />
               </span>
             </button>

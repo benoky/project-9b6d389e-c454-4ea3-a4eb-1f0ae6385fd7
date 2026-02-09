@@ -210,7 +210,12 @@
   }
 
   .cta-gradient-border:hover::after {
-    opacity: 0.6;
+    opacity: 0.8;
+    filter: blur(20px);
+  }
+
+  .cta-gradient-border:hover::before {
+    filter: brightness(1.2);
   }
 
   @property --gradient-angle {

@@ -195,23 +195,23 @@ export function SectionOperationScale() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.12 }}
-              className="flex items-center gap-5 rounded-2xl px-6 py-5 md:px-7 md:py-6 border border-white/20"
+              className="flex items-center gap-5 rounded-2xl px-6 py-5 md:px-7 md:py-6 border border-white/25"
               style={{
-                background: "rgba(255,255,255,0.6)",
-                backdropFilter: "blur(16px)",
-                WebkitBackdropFilter: "blur(16px)",
-                boxShadow: "0 8px 32px -8px rgba(0,0,0,0.15)",
+                background: "rgba(255,255,255,0.12)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+                boxShadow: "0 8px 32px -8px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.15)",
               }}
             >
               <div className="shrink-0" style={{ filter: "drop-shadow(0 0 10px rgba(37,110,244,0.5))" }}>
                 {card.icon}
               </div>
               <div className="min-w-0">
-                <p className="text-sm font-bold text-foreground/80 mb-1">{card.label}</p>
-                <p className="text-3xl md:text-4xl font-extrabold text-foreground tracking-tight leading-none mb-1">
+                <p className="text-sm font-bold text-white mb-1">{card.label}</p>
+                <p className="text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-none mb-1">
                   <KpiNumber target={card.target} suffix={card.suffix} started={started} />
                 </p>
-                <p className="text-xs text-foreground/50">{card.helper}</p>
+                <p className="text-xs text-white/60">{card.helper}</p>
               </div>
             </motion.div>
           ))}

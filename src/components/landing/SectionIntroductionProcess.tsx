@@ -1,16 +1,67 @@
 import { motion } from "framer-motion";
 import { AnimatedTitle } from "./AnimatedTitle";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  ClipboardCheck,
+  BarChart3,
+  ShieldCheck,
+  Handshake,
+  Wrench,
+} from "lucide-react";
 
-const processSteps = [
-  { step: "STEP 1", label: "사전 정보 진단" },
-  { step: "STEP 2", label: "실사 진단" },
-  { step: "STEP 3", label: "계약" },
-  { step: "STEP 4", label: "구축" },
-  { step: "STEP 5", label: "운영" },
-  { step: "STEP 6", label: "유지 보수 (O&M)" },
+const steps = [
+  {
+    icon: ClipboardCheck,
+    label: "무료 사전 진단",
+    desc: "기본 정보로 절감 가능성/적합성 사전 검토",
+    highlighted: false,
+  },
+  {
+    icon: BarChart3,
+    label: "현장/데이터 진단",
+    desc: "운영 데이터·현장 조건 기반으로 개선 포인트 확인",
+    highlighted: false,
+  },
+  {
+    icon: ShieldCheck,
+    label: "적합성 판정",
+    desc: "선투자 적용 가능 여부 판단 및 범위 확정",
+    highlighted: false,
+  },
+  {
+    icon: Handshake,
+    label: "공기업 선투자 계약",
+    desc: "공기업이 선투자 계약 체결 → 고객 초기 투자 0원 구조",
+    highlighted: true,
+  },
+  {
+    icon: Wrench,
+    label: "구축 & 운영",
+    desc: "설비 교체 · 디바이스 시공 · 소프트웨어 설치 · 운영(O&M)까지 실행",
+    highlighted: false,
+  },
 ];
+
+const coverageItems = [
+  "설비 교체",
+  "디바이스 구축 시공",
+  "소프트웨어 설치",
+  "운영 및 유지보수(O&M)",
+];
+
+const stepVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: 0.2 + i * 0.1,
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
+    },
+  }),
+};
 
 export function SectionIntroductionProcess() {
   const scrollToForm = () => {
@@ -20,9 +71,10 @@ export function SectionIntroductionProcess() {
   return (
     <section className="section-padding bg-background">
       <div className="container-tight">
-        <div className="text-center mb-12">
+        {/* Header */}
+        <div className="text-center mb-14 md:mb-16">
           <AnimatedTitle className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-foreground tracking-tight mb-4">
-            {"초기 투자 Zero,\n바로 시작하세요!"}
+            {"공기업 선투자 구조로,\n초기 투자 부담 없이 시작합니다."}
           </AnimatedTitle>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -31,68 +83,147 @@ export function SectionIntroductionProcess() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
-            공기업 선투자로 귀사 부담 없이<br />
-            상담부터 운영까지 한 번에 진행됩니다.
+            진단 후 적합성 판정 시 공기업이 선투자 계약을 진행하고,<br className="hidden md:inline" />
+            그 예산으로 설비·디바이스·소프트웨어 구축과 운영까지 한 번에 진행됩니다.
           </motion.p>
         </div>
 
-        {/* Timeline - Desktop */}
+        {/* 5-Step Flow — Desktop */}
+        <div className="hidden md:block mb-14">
+          <div className="relative">
+            {/* Connecting line */}
+            <div className="absolute top-8 left-[10%] right-[10%] h-0.5 bg-border" />
+
+            <div className="grid grid-cols-5 gap-4 relative">
+              {steps.map((step, i) => (
+                <motion.div
+                  key={step.label}
+                  custom={i}
+                  variants={stepVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="flex flex-col items-center text-center"
+                >
+                  {/* Circle icon */}
+                  <div
+                    className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-all ${
+                      step.highlighted
+                        ? "bg-primary text-primary-foreground shadow-[0_0_20px_-4px_hsl(217_90%_55%/0.5)] ring-2 ring-primary/30"
+                        : "bg-accent text-primary border border-border"
+                    }`}
+                  >
+                    <step.icon className="w-6 h-6" strokeWidth={1.5} />
+                  </div>
+
+                  {/* Step number */}
+                  <p className="text-[11px] font-semibold text-muted-foreground mb-1">
+                    STEP {i + 1}
+                  </p>
+
+                  {/* Label */}
+                  <p
+                    className={`text-sm font-bold mb-2 ${
+                      step.highlighted ? "text-primary" : "text-foreground"
+                    }`}
+                  >
+                    {step.label}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-xs text-muted-foreground leading-relaxed px-1">
+                    {step.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* 5-Step Flow — Mobile */}
+        <div className="md:hidden mb-14">
+          <div className="relative pl-10">
+            {/* Vertical line */}
+            <div className="absolute left-[15px] top-2 bottom-2 w-0.5 bg-border" />
+
+            <div className="space-y-8">
+              {steps.map((step, i) => (
+                <motion.div
+                  key={step.label}
+                  custom={i}
+                  variants={stepVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="relative"
+                >
+                  {/* Circle */}
+                  <div
+                    className={`absolute -left-10 top-0 w-8 h-8 rounded-full flex items-center justify-center z-10 ${
+                      step.highlighted
+                        ? "bg-primary text-primary-foreground shadow-[0_0_12px_-2px_hsl(217_90%_55%/0.5)]"
+                        : "bg-accent text-primary border border-border"
+                    }`}
+                  >
+                    <step.icon className="w-4 h-4" strokeWidth={1.5} />
+                  </div>
+
+                  <div>
+                    <p className="text-[11px] font-semibold text-muted-foreground mb-0.5">
+                      STEP {i + 1}
+                    </p>
+                    <p
+                      className={`text-sm font-bold mb-1 ${
+                        step.highlighted ? "text-primary" : "text-foreground"
+                      }`}
+                    >
+                      {step.label}
+                    </p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Coverage panel */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="hidden md:block mb-14"
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="rounded-2xl border border-border bg-accent/40 p-6 md:p-8 mb-10 max-w-2xl mx-auto"
         >
-          <div className="relative">
-            {/* Line */}
-            <div className="absolute top-6 left-0 right-0 h-0.5 bg-border" />
-            
-            {/* Steps */}
-            <div className="flex justify-between relative">
-              {processSteps.map((item, index) => (
-                <div key={item.step} className="flex flex-col items-center">
-                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-sm shadow-[0_2px_8px_-2px_hsl(217_90%_55%/0.4)] relative z-10">
-                    {index + 1}
-                  </div>
-                  <div className="mt-4 text-center">
-                    <p className="text-xs text-muted-foreground mb-1">{item.step}</p>
-                    <p className="text-sm font-medium text-foreground whitespace-nowrap">{item.label}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <p className="text-sm font-bold text-foreground mb-4 text-center">
+            선투자 예산으로 진행되는 범위
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 mb-4">
+            {coverageItems.map((item) => (
+              <span
+                key={item}
+                className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-card border border-border text-foreground shadow-sm"
+              >
+                {item}
+              </span>
+            ))}
           </div>
+          <p className="text-[11px] text-muted-foreground text-center">
+            현장 조건에 따라 적용 범위는 달라질 수 있습니다.
+          </p>
         </motion.div>
 
-        {/* Timeline - Mobile */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+        {/* Disclaimer */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="md:hidden mb-14"
+          className="text-[11px] text-muted-foreground/70 text-center mb-8"
         >
-          <div className="relative pl-8">
-            {/* Vertical line */}
-            <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-border" />
-            
-            {/* Steps */}
-            <div className="space-y-6">
-              {processSteps.map((item, index) => (
-                <div key={item.step} className="flex items-center gap-4 relative">
-                  <div className="absolute left-[-20px] w-7 h-7 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-xs shadow-[0_2px_8px_-2px_hsl(217_90%_55%/0.4)]">
-                    {index + 1}
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">{item.step}</p>
-                    <p className="text-sm font-medium text-foreground">{item.label}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+          ※ 선투자 적용 여부는 진단 결과 및 내부 기준에 따라 달라질 수 있습니다.
+        </motion.p>
 
         {/* CTA */}
         <motion.div
@@ -102,7 +233,7 @@ export function SectionIntroductionProcess() {
           className="text-center"
         >
           <Button onClick={scrollToForm} size="lg" className="gap-2">
-            지금 바로 무료 상담 신청하기
+            무료 진단 신청하기
             <ArrowRight className="w-4 h-4" />
           </Button>
         </motion.div>

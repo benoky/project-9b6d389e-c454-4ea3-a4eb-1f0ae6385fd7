@@ -31,6 +31,7 @@ const stats = [
     value: 38,
     suffix: "GWh",
     label: "전력 에너지 절감",
+    sub: undefined as string | undefined,
     bg: bgElectricity,
   },
   {
@@ -49,6 +50,7 @@ const stats = [
     value: 10326,
     suffix: "가구",
     label: "가구 환산 효과",
+    sub: "4인 가구 기준 / 월평균 약 307kWh 사용",
     bg: bgHomes,
   },
 ];
@@ -94,6 +96,11 @@ function StatCard({
           {stat.suffix}
         </span>
       </div>
+
+      {/* Sub text */}
+      {stat.sub && (
+        <p className="text-[10px] text-white/40 mt-3">{stat.sub}</p>
+      )}
     </motion.div>
   );
 }

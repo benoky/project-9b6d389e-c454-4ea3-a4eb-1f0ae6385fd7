@@ -38,7 +38,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="block mb-4 md:mb-6"
+              className="block mb-2 md:mb-3"
             >
               무료 에너지 진단부터 구축까지
             </motion.span>

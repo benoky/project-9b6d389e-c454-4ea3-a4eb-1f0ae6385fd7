@@ -123,7 +123,7 @@ export function SectionIntroductionProcess() {
 
                   {/* Label */}
                   <p
-                    className={`text-sm font-bold mb-2 ${
+                    className={`text-base font-bold mb-2 ${
                       step.highlighted ? "text-primary" : "text-foreground"
                     }`}
                   >
@@ -173,7 +173,7 @@ export function SectionIntroductionProcess() {
                       STEP {i + 1}
                     </p>
                     <p
-                      className={`text-sm font-bold mb-1 ${
+                      className={`text-base font-bold mb-1 ${
                         step.highlighted ? "text-primary" : "text-foreground"
                       }`}
                     >

@@ -189,32 +189,6 @@ export function SectionIntroductionProcess() {
           </div>
         </div>
 
-        {/* Coverage panel */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="rounded-2xl border border-border bg-accent/40 p-6 md:p-8 mb-10 max-w-2xl mx-auto"
-        >
-          <p className="text-sm font-bold text-foreground mb-4 text-center">
-            선투자 예산으로 진행되는 범위
-          </p>
-          <div className="flex flex-wrap justify-center gap-3 mb-4">
-            {coverageItems.map((item) => (
-              <span
-                key={item}
-                className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-card border border-border text-foreground shadow-sm"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-          <p className="text-[11px] text-muted-foreground text-center">
-            현장 조건에 따라 적용 범위는 달라질 수 있습니다.
-          </p>
-        </motion.div>
-
         {/* Disclaimer */}
         <motion.p
           initial={{ opacity: 0 }}

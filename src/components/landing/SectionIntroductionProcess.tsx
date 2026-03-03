@@ -63,14 +63,11 @@ const stepVariants = {
   }),
 };
 
-/** Compute dot color: gray → primary blue up to step4, then fade back */
+/** Compute dot color: smooth gradient from gray → full primary blue across all steps */
 function getDotColor(progress: number) {
-  const highlightRatio = 3 / 4; // step4 is at index 3 out of 4 segments
-  if (progress <= highlightRatio) {
-    return `hsl(var(--primary) / ${0.15 + (progress / highlightRatio) * 0.85})`;
-  }
-  const fadeProgress = (progress - highlightRatio) / (1 - highlightRatio);
-  return `hsl(var(--primary) / ${1 - fadeProgress * 0.7})`;
+  // Full gradient: starts light, peaks at primary, stays strong through the end
+  const opacity = 0.15 + progress * 0.85;
+  return `hsl(var(--primary) / ${opacity})`;
 }
 
 export function SectionIntroductionProcess() {

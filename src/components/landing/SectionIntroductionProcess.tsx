@@ -115,15 +115,21 @@ export function SectionIntroductionProcess() {
                       <motion.div
                         key={dotIndex}
                         className="w-[6px] h-[6px] rounded-full"
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          duration: 0.3,
-                          delay: 0.4 + globalIndex * 0.05,
-                          ease: "easeOut",
+                        style={{ backgroundColor: "hsl(var(--border))" }}
+                        animate={{
+                          backgroundColor: [
+                            "hsl(var(--border))",
+                            getDotColor(progress),
+                            "hsl(var(--border))",
+                          ],
+                          scale: [1, 1.4, 1],
                         }}
-                        style={{ backgroundColor: getDotColor(progress) }}
+                        transition={{
+                          duration: 2.5,
+                          delay: globalIndex * 0.12,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
                       />
                     );
                   })}
@@ -188,15 +194,21 @@ export function SectionIntroductionProcess() {
                   <motion.div
                     key={i}
                     className="w-[5px] h-[5px] rounded-full"
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.25,
-                      delay: 0.3 + i * 0.04,
-                      ease: "easeOut",
+                    style={{ backgroundColor: "hsl(var(--border))" }}
+                    animate={{
+                      backgroundColor: [
+                        "hsl(var(--border))",
+                        getDotColor(progress),
+                        "hsl(var(--border))",
+                      ],
+                      scale: [1, 1.4, 1],
                     }}
-                    style={{ backgroundColor: getDotColor(progress) }}
+                    transition={{
+                      duration: 2.5,
+                      delay: i * 0.1,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
                   />
                 );
               })}

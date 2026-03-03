@@ -197,7 +197,7 @@ export function SectionOperationScale() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-[11px] text-white/40 text-center mt-10"
+          className="text-xs text-white/70 text-center mt-10"
         >
           * 실적/절감 수치는 프로젝트 조건에 따라 달라질 수 있습니다.
         </motion.p>

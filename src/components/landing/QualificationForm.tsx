@@ -268,11 +268,12 @@ export function QualificationForm() {
 
       {/* Consent */}
       <div className="bg-card rounded-2xl shadow-card border border-border p-6 md:p-8">
-        <div className="flex items-start gap-3 pt-0.5">
+        <div className="flex gap-3">
           <Checkbox
             id="consent"
             checked={formData.consent}
             onCheckedChange={(checked) => updateField("consent", checked === true)}
+            className="mt-1 h-5 w-5 rounded-md"
           />
           <div className="flex-1">
             <label htmlFor="consent" className="text-sm text-foreground cursor-pointer leading-relaxed">

@@ -94,9 +94,9 @@ export function SectionIntroductionProcess() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            진단 후 적합성 판정 시 공기업이 선투자 계약을 진행하고,
-그 예산으로 설비·디바이스·소프트웨어 구축과 운영까지 한 번에 진행됩니다<br className="hidden md:inline" />
+            className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">진단 후 적합성 판정 시 공기업이 선투자 계약을 진행하고, 그 예산으로 설비·디바이스·소프트웨어 구축과 운영까지 한 번에 진행됩니다
+
+            <br className="hidden md:inline" />
             그 예산으로 설비·디바이스·소프트웨어 구축과 운영까지 한 번에 진행됩니다.
           </motion.p>
         </div>

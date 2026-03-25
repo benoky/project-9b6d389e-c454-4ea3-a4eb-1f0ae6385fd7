@@ -240,7 +240,7 @@ export function QualificationForm() {
           </div>
 
           <div>
-            <Label htmlFor="annualElectricityCost">연평균 전기료 *</Label>
+            <Label htmlFor="annualElectricityCost">연평균전기요금 *</Label>
             <Input
               id="annualElectricityCost"
               placeholder="예) 5억"

@@ -122,6 +122,8 @@ export function QualificationForm() {
       buildingType: "",
       annualElectricityCost: "",
       totalFloorArea: "",
+      needs: [],
+      needsOther: "",
       consent: false,
       thirdPartyConsent: false,
     });

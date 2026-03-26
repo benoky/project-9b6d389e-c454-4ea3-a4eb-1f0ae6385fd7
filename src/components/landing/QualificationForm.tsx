@@ -273,9 +273,21 @@ export function QualificationForm() {
             <Label htmlFor="annualElectricityCost">연평균전기요금 *</Label>
             <Input
               id="annualElectricityCost"
-              placeholder="예) 5억"
+              type="number"
+              inputMode="numeric"
+              placeholder="예) 500000000"
               value={formData.annualElectricityCost}
-              onChange={(e) => updateField("annualElectricityCost", e.target.value)}
+              onChange={(e) => {
+                const val = e.target.value;
+                if (val === "" || /^\d+$/.test(val)) {
+                  updateField("annualElectricityCost", val);
+                }
+              }}
+              onKeyDown={(e) => {
+                if (["e", "E", ".", "-", "+"].includes(e.key)) {
+                  e.preventDefault();
+                }
+              }}
               className="mt-1.5"
             />
             <p className="text-xs text-muted-foreground mt-1">대략적인 수준이면 충분합니다.</p>

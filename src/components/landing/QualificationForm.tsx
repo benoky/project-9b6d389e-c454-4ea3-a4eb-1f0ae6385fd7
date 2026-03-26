@@ -105,8 +105,8 @@ export function QualificationForm() {
       siteName: formData.siteName,
       region: formData.region,
       buildingType: formData.buildingType,
-      annualElectricityCost: formData.annualElectricityCost,
-      totalFloorArea: formData.totalFloorArea,
+      annualElectricCostKRW: formData.annualElectricCostKRW,
+      floorAreaM2: formData.floorAreaM2,
       consent: formData.consent,
     });
 

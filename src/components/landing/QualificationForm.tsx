@@ -27,6 +27,17 @@ const formSchema = z.object({
   thirdPartyConsent: z.boolean().optional(),
 });
 
+const NEEDS_OPTIONS = [
+  "조명(LED) 교체·리뉴얼",
+  "노후 설비 교체(예: 공기압축기 등)",
+  "에너지 사용량 모니터링",
+  "피크(최대수요) 관리",
+  "태양광 설비 도입 검토",
+  "이상 사용 탐지(비정상 부하 등)",
+  "과전압 기반 화재 예방(전기 안전)",
+  "기타(직접 입력)",
+] as const;
+
 interface FormData {
   name: string;
   email: string;
@@ -36,6 +47,8 @@ interface FormData {
   buildingType: string;
   annualElectricityCost: string;
   totalFloorArea: string;
+  needs: string[];
+  needsOther: string;
   consent: boolean;
   thirdPartyConsent: boolean;
 }

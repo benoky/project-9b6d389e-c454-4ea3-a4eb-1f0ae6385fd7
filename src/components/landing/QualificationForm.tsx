@@ -27,6 +27,17 @@ const formSchema = z.object({
   thirdPartyConsent: z.boolean().optional(),
 });
 
+const NEEDS_OPTIONS = [
+  "조명(LED) 교체·리뉴얼",
+  "노후 설비 교체(예: 공기압축기 등)",
+  "에너지 사용량 모니터링",
+  "피크(최대수요) 관리",
+  "태양광 설비 도입 검토",
+  "이상 사용 탐지(비정상 부하 등)",
+  "과전압 기반 화재 예방(전기 안전)",
+  "기타(직접 입력)",
+] as const;
+
 interface FormData {
   name: string;
   email: string;
@@ -36,6 +47,8 @@ interface FormData {
   buildingType: string;
   annualElectricityCost: string;
   totalFloorArea: string;
+  needs: string[];
+  needsOther: string;
   consent: boolean;
   thirdPartyConsent: boolean;
 }
@@ -53,11 +66,13 @@ export function QualificationForm() {
     buildingType: "",
     annualElectricityCost: "",
     totalFloorArea: "",
+    needs: [],
+    needsOther: "",
     consent: false,
     thirdPartyConsent: false,
   });
 
-  const updateField = (field: keyof FormData, value: string | boolean) => {
+  const updateField = (field: keyof FormData, value: string | boolean | string[]) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
       setErrors((prev) => {
@@ -83,6 +98,19 @@ export function QualificationForm() {
       consent: formData.consent,
     });
 
+    // Validate needsOther when 기타 is selected
+    if (formData.needs.includes("기타(직접 입력)") && !formData.needsOther.trim()) {
+      const newErrors: Record<string, string> = {};
+      if (!result.success) {
+        result.error.errors.forEach((err) => {
+          if (err.path[0]) newErrors[err.path[0] as string] = err.message;
+        });
+      }
+      newErrors.needsOther = "기타 내용을 입력해주세요";
+      setErrors(newErrors);
+      return;
+    }
+
     if (!result.success) {
       const newErrors: Record<string, string> = {};
       result.error.errors.forEach((err) => {
@@ -107,6 +135,8 @@ export function QualificationForm() {
       buildingType: "",
       annualElectricityCost: "",
       totalFloorArea: "",
+      needs: [],
+      needsOther: "",
       consent: false,
       thirdPartyConsent: false,
     });
@@ -264,6 +294,69 @@ export function QualificationForm() {
             {errors.totalFloorArea && <p className="text-sm text-destructive mt-1">{errors.totalFloorArea}</p>}
           </div>
         </div>
+      </div>
+
+      {/* Needs / Interests */}
+      <div className="bg-card rounded-2xl shadow-card border border-border p-6 md:p-8">
+        <h3 className="text-lg font-semibold text-foreground mb-1">
+          관심 있는 개선 항목을 선택해 주세요. (복수 선택 가능)
+        </h3>
+        <p className="text-xs text-muted-foreground mb-6">
+          선택하신 항목을 기준으로 진단 범위와 우선순위를 제안드립니다.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {NEEDS_OPTIONS.map((option) => {
+            const isChecked = formData.needs.includes(option);
+            return (
+              <div key={option} className="flex items-center gap-2.5">
+                <Checkbox
+                  id={`need-${option}`}
+                  checked={isChecked}
+                  onCheckedChange={(checked) => {
+                    const next = checked
+                      ? [...formData.needs, option]
+                      : formData.needs.filter((n) => n !== option);
+                    updateField("needs", next);
+                    // Clear needsOther when 기타 is unchecked
+                    if (option === "기타(직접 입력)" && !checked) {
+                      updateField("needsOther", "");
+                      setErrors((prev) => {
+                        const e = { ...prev };
+                        delete e.needsOther;
+                        return e;
+                      });
+                    }
+                  }}
+                  className="h-5 w-5 rounded-md"
+                />
+                <label
+                  htmlFor={`need-${option}`}
+                  className="text-sm text-foreground cursor-pointer leading-relaxed"
+                >
+                  {option}
+                </label>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 기타 text input */}
+        {formData.needs.includes("기타(직접 입력)") && (
+          <div className="mt-4">
+            <Label htmlFor="needsOther">기타 내용 *</Label>
+            <Input
+              id="needsOther"
+              placeholder="원하시는 개선 항목을 입력해 주세요"
+              value={formData.needsOther}
+              onChange={(e) => updateField("needsOther", e.target.value)}
+              className="mt-1.5"
+            />
+            {errors.needsOther && (
+              <p className="text-sm text-destructive mt-1">{errors.needsOther}</p>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Consent */}

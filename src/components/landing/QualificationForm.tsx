@@ -282,40 +282,63 @@ export function QualificationForm() {
           </div>
 
           <div>
-            <Label htmlFor="annualElectricityCost">연평균전기요금 *</Label>
-            <Input
-              id="annualElectricityCost"
-              type="number"
-              inputMode="numeric"
-              placeholder="예) 500000000"
-              value={formData.annualElectricityCost}
-              onChange={(e) => {
-                const val = e.target.value;
-                if (val === "" || /^\d+$/.test(val)) {
-                  updateField("annualElectricityCost", val);
-                }
-              }}
-              onKeyDown={(e) => {
-                if (["e", "E", ".", "-", "+"].includes(e.key)) {
-                  e.preventDefault();
-                }
-              }}
-              className="mt-1.5"
-            />
-            <p className="text-xs text-muted-foreground mt-1">대략적인 수준이면 충분합니다.</p>
-            {errors.annualElectricityCost && <p className="text-sm text-destructive mt-1">{errors.annualElectricityCost}</p>}
+            <Label htmlFor="annualElectricCostKRW">연평균 전기요금 *</Label>
+            <div className="flex items-center gap-2 mt-1.5">
+              <Input
+                id="annualElectricCostKRW"
+                inputMode="numeric"
+                placeholder="예: 500000000"
+                value={formatWithCommas(formData.annualElectricCostKRW)}
+                onChange={(e) => {
+                  const raw = e.target.value;
+                  const { digits, hasInvalid } = stripNonDigits(raw);
+                  if (hasInvalid) {
+                    setErrors((prev) => ({ ...prev, annualElectricCostKRW: "숫자만 입력해 주세요. (공백/쉼표는 자동 무시됩니다)" }));
+                    return;
+                  }
+                  updateField("annualElectricCostKRW", digits);
+                  if (digits && parseInt(digits, 10) === 0) {
+                    setErrors((prev) => ({ ...prev, annualElectricCostKRW: "0보다 큰 금액을 입력해 주세요." }));
+                  }
+                }}
+              />
+              <span className="text-sm font-medium text-muted-foreground shrink-0">원</span>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">가이드: 원(₩) 기준으로 숫자만 입력해 주세요. 공백/쉼표는 자동으로 무시됩니다.</p>
+            {formData.annualElectricCostKRW && !errors.annualElectricCostKRW && parseInt(formData.annualElectricCostKRW, 10) > 0 && (
+              <p className="text-xs text-muted-foreground mt-0.5">표기 예시: {formatWithCommas(formData.annualElectricCostKRW)}원</p>
+            )}
+            {errors.annualElectricCostKRW && <p className="text-sm text-destructive mt-1">{errors.annualElectricCostKRW}</p>}
           </div>
 
           <div>
-            <Label htmlFor="totalFloorArea">연면적 (㎡) *</Label>
-            <Input
-              id="totalFloorArea"
-              placeholder="예) 120,000"
-              value={formData.totalFloorArea}
-              onChange={(e) => updateField("totalFloorArea", e.target.value)}
-              className="mt-1.5"
-            />
-            {errors.totalFloorArea && <p className="text-sm text-destructive mt-1">{errors.totalFloorArea}</p>}
+            <Label htmlFor="floorAreaM2">연면적 *</Label>
+            <div className="flex items-center gap-2 mt-1.5">
+              <Input
+                id="floorAreaM2"
+                inputMode="numeric"
+                placeholder="예: 25000"
+                value={formatWithCommas(formData.floorAreaM2)}
+                onChange={(e) => {
+                  const raw = e.target.value;
+                  const { digits, hasInvalid } = stripNonDigits(raw);
+                  if (hasInvalid) {
+                    setErrors((prev) => ({ ...prev, floorAreaM2: "숫자만 입력해 주세요. (공백/쉼표는 자동 무시됩니다)" }));
+                    return;
+                  }
+                  updateField("floorAreaM2", digits);
+                  if (digits && parseInt(digits, 10) === 0) {
+                    setErrors((prev) => ({ ...prev, floorAreaM2: "0보다 큰 면적을 입력해 주세요." }));
+                  }
+                }}
+              />
+              <span className="text-sm font-medium text-muted-foreground shrink-0">m²</span>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">가이드: 숫자만 입력해 주세요. 공백/쉼표는 자동으로 무시됩니다.</p>
+            {formData.floorAreaM2 && !errors.floorAreaM2 && parseInt(formData.floorAreaM2, 10) > 0 && (
+              <p className="text-xs text-muted-foreground mt-0.5">표기 예시: {formatWithCommas(formData.floorAreaM2)}m²</p>
+            )}
+            {errors.floorAreaM2 && <p className="text-sm text-destructive mt-1">{errors.floorAreaM2}</p>}
           </div>
         </div>
       </div>
